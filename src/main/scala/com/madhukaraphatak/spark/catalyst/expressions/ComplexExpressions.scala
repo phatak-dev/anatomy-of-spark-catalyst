@@ -1,8 +1,8 @@
 package com.madhukaraphatak.spark.catalyst.expressions
 
 import org.apache.spark.sql.catalyst.InternalRow
-import org.apache.spark.sql.catalyst.expressions.{Add, AttributeReference, BoundReference, ExprId, Literal}
-import org.apache.spark.sql.types.IntegerType
+import org.apache.spark.sql.catalyst.expressions.{Add, Alias, AttributeReference, BoundReference, ExprId, Literal}
+import org.apache.spark.sql.types.{IntegerType, StringType}
 import org.apache.spark.unsafe.types.UTF8String
 
 /**
@@ -16,17 +16,15 @@ object ComplexExpressions {
     val internalRow = InternalRow.fromSeq(values)
 
     //val boundreference
-
     val boundReferenceExpression = BoundReference(0, IntegerType,false)
     println("select value at reference is " +boundReferenceExpression.eval(internalRow))
-
-
     //ADD using boundreference
+    val addExpression = Add(boundReferenceExpression,Literal(10))
+    println(addExpression.eval(internalRow))
 
-    val add = Add(boundReferenceExpression,Literal(10))
-    println(add.eval(internalRow))
-
-
+    //Alias expression
+    val aliasExpression = Alias(addExpression,"addedValue")()
+    println(aliasExpression.numberedTreeString)
 
   }
 
