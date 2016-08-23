@@ -30,7 +30,8 @@ object AnalysisExample {
    println(filterLogicalPlan.numberedTreeString)
    println(filterLogicalPlan.analyzed)
 
-   //analyse a wrong plan
+   //analyse a wrong plan .. Puts an extra ' to signify not able to 
+   // analyze properly 
 
    val wrongBooleanExpression = EqualTo(attributeReference,Literal(true))
    val wrongFilterPlan = Filter(wrongBooleanExpression, localRelation)
