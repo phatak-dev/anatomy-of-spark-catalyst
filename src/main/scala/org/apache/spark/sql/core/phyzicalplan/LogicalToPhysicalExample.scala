@@ -12,7 +12,7 @@ import org.apache.spark.sql.types.IntegerType
  * Created by madhu on 23/07/16.
  */
 
-object LogicalToPhyzicalExample {
+object LogicalToPhysicalExample {
 
   def main(args: Array[String]): Unit = {
 
